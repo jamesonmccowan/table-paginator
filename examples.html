@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Table Pagination Examples</title>
+
+        <link rel="stylesheet" href="bootstrap/bootstrap.min.css" />
+        <style type="text/css">
+body {
+    padding: 5px;
+}
+.table_box {
+    margin: 1cm;
+    padding: 5px;
+    border: 1px solid black;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+td, th {
+    border: 1px solid black;
+}
+.color_page {
+    background: #ccf;
+}
+
+.box div, .box ul {
+    float: right;
+}
+        </style>
+
+        <script type="text/javascript" src="pagination.js"></script>
+        <script type="text/javascript" src="table.js"></script>
+    </head>
+    <body>
+        <h2>Table Pagination</h2>
+
+
+        <h3>Normal Table</h3>
+        <div id="table_box_native"></div>
+        <div id="index_native" class="box"></div>
+        <br /><br /><sub>Code:</sub>
+        <pre>pageinator({
+    table: document.getElementById("table_box_native").getElementsByTagName("table")[0],
+    box: document.getElementById("index_native"),
+    active_class: "color_page"
+});</pre>
+
+        <script type="text/javascript">
+window.addEventListener("load", function () {
+    create_sample_table(document.getElementById("table_box_native"));
+    pageinator({
+        table: document.getElementById("table_box_native").getElementsByTagName("table")[0],
+        box: document.getElementById("index_native"),
+        active_class: "color_page"
+    });
+}, false);
+        </script>
+
+        <hr />
+
+        <h3>Table with Bootstrap Pagination</h3>
+        <div id="table_box_bootstrap"></div>
+        <br /><br /><sub>Code:</sub>
+        <pre>var box = pageinator({
+    table: document.getElementById("table_box_bootstrap").getElementsByTagName("table")[0],
+    box_mode: "list",
+});
+box.className = "box";
+document.getElementById("table_box_bootstrap").appendChild(box);</pre>
+
+        <script type="text/javascript">
+window.addEventListener("load", function () {
+    create_sample_table(document.getElementById("table_box_bootstrap"), false, false, false);
+    var box = pageinator({
+        table: document.getElementById("table_box_bootstrap").getElementsByTagName("table")[0],
+        box_mode: "list",
+    });
+    box.className = "box";
+    document.getElementById("table_box_bootstrap").appendChild(box);
+}, false);
+        </script>
+
+        <hr />
+
+        <h3>List</h3>
+        <ul id="list">
+            <li>On Becoming a Person: A Therapist's View of Psychotherapy</li>
+            <li>Psychoanalysis and Religion</li>
+            <li>The Farther Reaches of Human Nature</li>
+            <li>What Life Should Mean to You</li>
+            <li>Walden Two</li>
+            <li>Childhood and Society</li>
+            <li>The Doctor and The Soul: An Introduction to Logotherapy</li>
+            <li>Our Inner Conflicts: A Constructive Theory of Neurosis</li>
+            <li>Cognitive therapy and the emotional disorders</li>
+            <li>Humanistic Psychotherapy: The Rational-Emotive Approach</li>
+            <li>The Basic Writings of Sigmund Freud</li>
+            <li>I Ching, The Oracle of the Cosmic Way</li>
+            <li>Baboon Mothers and Infants</li>
+            <li>The Autobiography of Charles Darwin: 1809-1882</li>
+            <li>A sacred unity: Further steps to an ecology of mind</li>
+            <li>Life Cycles: Reflections of an Evolutionary Biologist</li>
+            <li>Family Evaluation: An Approach Based on Bowen Theory</li>
+            <li>A Secure Base</li>
+            <li>The Integrative Neurobiology of Affiliation</li>
+            <li>Psychobiology of reptilian reproduction</li>
+            <li>Descartes Error: Emotion, Reason and the Human Brain</li>
+            <li>Homicide</li>
+            <li>On the Origin of Species</li>
+            <li>The Descent of Man</li>
+            <li>Out of the Crisis</li>
+            <li>Good Natured</li>
+            <li>Ideas And Opinions</li>
+            <li>Time Frames:The Evolution of Punctuated Equilibria</li>
+            <li>Shot in the Heart</li>
+            <li>Emotional Intelligence: Why It Can Matter More Than IQ</li>
+            <li>The Chimpanzees of Gombe: Patterns of Behavior</li>
+            <li>Why males exist: An inquiry into the evolution of sex</li>
+            <li>The Roots of Human Behavior</li>
+            <li>Sacred Hoops: Spiritual Lessons of a Hardwood Warrior</li>
+            <li>The Possible and the Actual</li>
+            <li>The Undiscovered Self</li>
+            <li>Out of Control</li>
+            <li>The Emotional Brain</li>
+            <li>Families and Family Therapy</li>
+            <li>Will Therapy and Truth and Reality</li>
+            <li>Sex and Friendship in Baboons</li>
+            <li>The Alchemy of Finance</li>
+            <li>Lives of a Cell: Notes of a Biology Watcher</li>
+            <li>The Holy Bible: King James Version</li>
+            <li>The Battered Women</li>
+            <li>The Beak of the Finch: A Story of Evolution in Our Time</li>
+            <li>Beyond Natural Selection</li>
+            <li>The Moral Sense</li>
+            <li>Anna Freud: A Biography</li>
+        </ul>
+        <div id="list_index" class="box"></div>
+        <br /><br /><sub>Code:</sub>
+        <pre>pageinator({
+    get_rows: function () {
+        return document.getElementById("list").getElementsByTagName("li");
+    },
+    box: document.getElementById("list_index"),
+    active_class: "color_page"
+});</pre>
+
+        <script type="text/javascript">
+window.addEventListener("load", function () {
+    pageinator({
+        get_rows: function () {
+            return document.getElementById("list").getElementsByTagName("li");
+        },
+        box: document.getElementById("list_index"),
+        active_class: "color_page"
+    });
+}, false);
+        </script>
+    </body>
+</html>
