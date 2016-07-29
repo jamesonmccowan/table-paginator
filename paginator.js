@@ -101,16 +101,16 @@ function pageinator(config) {
 
     // check that page and page count are sensible values
     if (pages < 1) {
-        pages = 1; 
-    }  
+        pages = 1;
+    }
     if (page > pages) {
-        page = pages; 
+        page = pages;
     }
     if (page < 1) {
-        page = 1; 
+        page = 1;
     }
     config.page = page;
-    
+ 
     // hide rows not on current page and show the rows that are
     for (var i=0;i<trs.length;i++) {
         if (typeof trs[i]["data-display"] == "undefined") {

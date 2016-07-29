@@ -61,7 +61,6 @@ function create_sample_table(parentNode, head, body, foot, data) {
     }
     var table = document.createElement("table");
     var tr, th, td;
-    
     // header
     tr = document.createElement("tr");
     var headers = data.head || [];
