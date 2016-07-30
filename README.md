@@ -1,12 +1,12 @@
 ## Table Paginator
 
-A small javascript library for taking large tables and breaking them into pages.
-This library can also paginate pretty much anything that you can provide an element selector function for.
+A small JavaScript function for taking large tables and breaking them into pages.
+This function can also paginate pretty much anything that you can provide an element selector function for.
 
 ### How to Use It
 * Download the "pagination.js" file
 * Include it in a script tag on the html page you want to use it on
-* Run the pageinator function with a proper configuration object
+* Run the paginator function with a proper configuration object
 * Done
 
 Check out the _examples.html_ file for examples of this in use.
@@ -18,7 +18,7 @@ If no function is provided, checks for a config.table element and looks for rows
 **box** : Empty element that will have page buttons added to it.
 If no config.box is provided, but a config.table is, then the page buttons will be added using the table.
 
-**table** : Table element to be pageinated not required if a get\_rows function is provided.
+**table** : Table element to be paginated not required if a get\_rows function is provided.
 
 **rows\_per\_page** : Number of rows to display per page. default number is 10.
 
@@ -45,5 +45,5 @@ The default setup is
 
 **active_class** : Set the class for page buttons to have when active. Defaults to "active".
 
-**tail\_call** : Function to be called after pageinator is done, and after every turn of the page, or changing of the number of rows per page.
+**tail\_call** : Function to be called after paginator is done, and after every turn of the page, or changing of the number of rows per page.
 

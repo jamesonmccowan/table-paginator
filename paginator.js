@@ -8,7 +8,7 @@
  *     box : Empty element that will have page buttons added to it
  *         If no config.box is provided, but a config.table is, then the page buttons will be added using the table
  *
- *     table : table element to be pageinated
+ *     table : table element to be paginated
  *         not required if a get_rows function is provided
  *
  *     rows_per_page : number of rows to display per page
@@ -38,15 +38,15 @@
  *      active_class: set the class for page buttons to have when active.
  *          defaults to "active"
  *
- *     tail_call: function to be called after pageinator is done
+ *     tail_call: function to be called after paginator is done
  * }
  */
-function pageinator(config) {
+function paginator(config) {
     // throw errors if insufficient parameters were given
     if (typeof config != "object")
-        throw "Pageinator was expecting a config object!";
+        throw "Paginator was expecting a config object!";
     if (typeof config.get_rows != "function" && !(config.table instanceof Element))
-        throw "Pageinator was expecting a table or get_row function!";
+        throw "Paginator was expecting a table or get_row function!";
 
     // get/make an element for storing the page numbers in
     var box;
@@ -160,7 +160,7 @@ function pageinator(config) {
                 li.addEventListener("click", function () {
                     if (this.className.split(" ").indexOf("disabled") == -1) {
                         config.page = index;
-                        pageinator(config);
+                        paginator(config);
                     }
                 }, false);
                 return li;
@@ -173,7 +173,7 @@ function pageinator(config) {
                     event.preventDefault();
                     if (this.disabled != true) {
                         config.page = index;
-                        pageinator(config);
+                        paginator(config);
                     }
                     return false;
                 }, false);
@@ -236,7 +236,7 @@ function pageinator(config) {
         select.value = rows_per_page;
         select.addEventListener("change", function () {
             config.rows_per_page = this.value;
-            pageinator(config);
+            paginator(config);
         }, false);
         box.appendChild(select);
     }
