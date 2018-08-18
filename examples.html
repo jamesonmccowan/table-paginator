@@ -175,5 +175,42 @@ window.addEventListener("load", function () {
 }, false);
             </script>
         </div>
+
+        <hr />
+
+        <div class="example">
+            <h3>Table with Pagination Toggle</h3>
+            <p>Example of how to toggle the paginator feature.</p>
+            <div id="table_box_toggle"></div>
+            <div id="index_toggle" class="box"></div>
+            <button id="button_toggle">Toggle Pagination</button>
+            <br /><br /><sub>Code:</sub>
+            <pre>var config = {
+    table: document.getElementById("table_box_toggle").getElementsByTagName("table")[0],
+    box: document.getElementById("index_toggle"),
+    active_class: "color_page"
+};
+paginator(config);
+document.getElementById("button_toggle").addEventListener("click", function () {
+    config.disable = !config.disable;
+    paginator(config);
+}, false);</pre>
+
+            <script type="text/javascript">
+window.addEventListener("load", function () {
+    create_sample_table(document.getElementById("table_box_toggle"));
+    var config = {
+        table: document.getElementById("table_box_toggle").getElementsByTagName("table")[0],
+        box: document.getElementById("index_toggle"),
+        active_class: "color_page"
+    };
+    paginator(config);
+    document.getElementById("button_toggle").addEventListener("click", function () {
+        config.disable = !config.disable;
+        paginator(config);
+    }, false);
+}, false);
+            </script>
+        </div>
     </body>
 </html>

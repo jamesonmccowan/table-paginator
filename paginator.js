@@ -20,7 +20,7 @@
  *     box_mode: "list", "buttons", or function. determines how the page number buttons are built.
  *         "list" builds the page index in list format and adds class "pagination" to the ul element. Meant for use with bootstrap
  *         "buttons" builds the page index out of buttons
- *         if this field is a function, it will be passed the config object as its ownly param and assumed to build the page index buttons
+ *         if this field is a function, it will be passed the config object as its only param and assumed to build the page index buttons
  *
  *     page_options: false or [{text: , value: }, ... ] used to set what the dropdown menu options are available, resets rows_per_page value
  *         false prevents the options from being displayed
@@ -35,10 +35,13 @@
  *               { value: 0,  text: 'All' }
  *           ]
  *
- *      active_class: set the class for page buttons to have when active.
+ *     active_class: set the class for page buttons to have when active.
  *          defaults to "active"
  *
- *     tail_call: function to be called after paginator is done
+ *     disable: true or false, shows all rows of the table and hides pagination controlls if set to true.
+ *
+ *     tail_call: function to be called after paginator is done.
+ *
  * }
  */
 function paginator(config) {
@@ -47,6 +50,11 @@ function paginator(config) {
         throw "Paginator was expecting a config object!";
     if (typeof config.get_rows != "function" && !(config.table instanceof Element))
         throw "Paginator was expecting a table or get_row function!";
+
+    // get/set if things are disabled
+    if (typeof config.disable == "undefined") {
+        config.disable = false;
+    }
 
     // get/make an element for storing the page numbers in
     var box;
@@ -120,7 +128,12 @@ function paginator(config) {
             if (i < page*rows_per_page && i >= (page-1)*rows_per_page) {
                 trs[i].style.display = trs[i]["data-display"];
             } else {
-                trs[i].style.display = "none";
+                // Only hide if pagination is not disabled
+                if (!config.disable) {
+                    trs[i].style.display = "none";
+                } else {
+                    trs[i].style.display = trs[i]["data-display"];
+                }
             }
         } else {
             trs[i].style.display = trs[i]["data-display"];
@@ -248,6 +261,18 @@ function paginator(config) {
         + " to " + (trs.length<page*rows_per_page||rows_per_page==0?trs.length:page*rows_per_page)
         + " of " + trs.length;
     box.appendChild(stat);
+
+    // hide pagination if disabled
+    if (config.disable) {
+        if (typeof box["data-display"] == "undefined") {
+            box["data-display"] = box.style.display||"";
+        }
+        box.style.display = "none";
+    } else {
+        if (box.style.display == "none") {
+            box.style.display = box["data-display"]||"";
+        }
+    }
 
     // run tail function
     if (typeof config.tail_call == "function") {

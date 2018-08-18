@@ -45,5 +45,7 @@ The default setup is
 
 **active_class** : Set the class for page buttons to have when active. Defaults to "active".
 
+**disable** : true or false, shows all rows of the table and hides pagination controlls if set to true.
+
 **tail\_call** : Function to be called after paginator is done, and after every turn of the page, or changing of the number of rows per page.
 
